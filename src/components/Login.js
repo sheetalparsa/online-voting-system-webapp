@@ -33,7 +33,7 @@ export default function Login() {
         return voter.email === user.email && voter.password === user.password;
       });
       if (foundVoter) {
-        navigate(`/voter/${foundVoter._id}`);
+        navigate(`/voter/${foundVoter._id}/verify_voter`);
       }
       else
       {

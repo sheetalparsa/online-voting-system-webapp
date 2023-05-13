@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import axios from "axios";
 import { baseUrl } from "../config";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import ContentWrapper from "./ContentWrapper";
 
 export default function VoterDetails() {
+  const navigate = useNavigate();
   const { voterId } = useParams();
   const [selectedCandidate, setSelectedCandidate] = useState("");
   const [candidates, setCandidates] = useState([]);
@@ -15,6 +16,7 @@ export default function VoterDetails() {
     if (!selectedCandidate) {
       alert("Please Select a candidate to vote");
     } else if (voter.status !== true) {
+      navigate(`/thankyou`)
       alert(selectedCandidate);
     } else {
       alert("The Voter has already voted!!");
