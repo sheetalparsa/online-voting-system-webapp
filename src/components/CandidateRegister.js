@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { baseUrl } from "../config";
+import ContentWrapper from "./ContentWrapper";
 
 export default function CandidateRegister() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function CandidateRegister() {
     password: "",
     phone: "",
     position: "",
-    election_symbol: ""
+    election_symbol: "",
   });
 
   const handleChange = (evt) => {
@@ -27,7 +28,6 @@ export default function CandidateRegister() {
   };
 
   const handleRegisterCandidate = async (e) => {
-    e.preventDefault();
     try {
       // create a new voter
       const res = await axios.post(`${baseUrl}/candidates`, candidate);
@@ -38,9 +38,11 @@ export default function CandidateRegister() {
   };
 
   return (
-    <div className="space-y-10">
-      <div className="flex justify-center mt-5 px-4 sm:px-0">
-        <h2 className="text-2xl font-bold leading-7 text-gray-900">Register as Candidate</h2>
+    <ContentWrapper>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          Register as Candidate
+        </h2>
       </div>
 
       <div className="flex justify-center">
@@ -49,7 +51,10 @@ export default function CandidateRegister() {
             <div className="px-4 py-6 sm:p-8">
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label htmlFor="full_name" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="full_name"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Full name
                   </label>
                   <div className="mt-2">
@@ -65,9 +70,11 @@ export default function CandidateRegister() {
                   </div>
                 </div>
 
-
                 <div className="sm:col-span-4">
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Email address
                   </label>
                   <div className="mt-2">
@@ -84,7 +91,10 @@ export default function CandidateRegister() {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Password
                   </label>
                   <div className="mt-2">
@@ -101,7 +111,10 @@ export default function CandidateRegister() {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Phone
                   </label>
                   <div className="mt-2">
@@ -118,7 +131,10 @@ export default function CandidateRegister() {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="position" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="position"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Position
                   </label>
                   <div className="mt-2">
@@ -135,7 +151,10 @@ export default function CandidateRegister() {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="election_symbol" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label
+                    htmlFor="election_symbol"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Election symbol
                   </label>
                   <div className="mt-2">
@@ -156,11 +175,12 @@ export default function CandidateRegister() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="text-sm font-semibold leading-6 text-gray-900">
+                className="text-sm font-semibold leading-6 text-gray-900"
+              >
                 Cancel
               </button>
               <button
-                type="submit"
+                type="button"
                 onClick={handleRegisterCandidate}
                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
@@ -170,6 +190,6 @@ export default function CandidateRegister() {
           </form>
         </div>
       </div>
-    </div>
-  )
+    </ContentWrapper>
+  );
 }

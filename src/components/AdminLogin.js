@@ -1,10 +1,10 @@
+import ContentWrapper from "./ContentWrapper";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { baseUrl } from "../config";
-import ContentWrapper from "./ContentWrapper";
 
-export default function Login() {
+export default function AdminLogin() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -19,60 +19,25 @@ export default function Login() {
     });
   };
 
-  const voter_signin = async (e) => {
+  const admin_signin = async (e) => {
     if (!user.email || !user.password) {
       alert("please enter both email and password");
       return;
     }
 
     try {
-      const res = await axios.get(`${baseUrl}/voters`);
-      const foundVoter = res.data.find((voter) => {
-        return voter.email === user.email && voter.password === user.password;
+      const res = await axios.get(`${baseUrl}/admins`);
+      const foundAdmin = res.data.find((admin) => {
+        return admin.email === user.email && admin.password === user.password;
       });
-      if (foundVoter) {
-        navigate(`/voter/${foundVoter._id}/verify_voter`);
+      if (foundAdmin) {
+        navigate(`/admin/dashboard`);
       } else {
-        alert("Unable to find the voter");
+        alert("Incorrect credentials for Admin");
       }
     } catch (err) {
       alert(err);
     }
-  };
-
-  const voter_register = (e) => {
-    navigate("/voter-register");
-  };
-
-  const candidate_signin = async (e) => {
-    if (!user.email || !user.password) {
-      alert("please enter both email and password");
-      return;
-    }
-
-    try {
-      const res = await axios.get(`${baseUrl}/candidates`);
-      const foundCandidate = res.data.find((candidate) => {
-        return (
-          candidate.email === user.email && candidate.password === user.password
-        );
-      });
-      if (foundCandidate) {
-        navigate(`/candidate/${foundCandidate._id}`);
-      } else {
-        alert("Unable to find the candidate");
-      }
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  const candidate_register = (e) => {
-    navigate("/candidate-register");
-  };
-
-  const admin_login = () => {
-    navigate("/admin");
   };
 
   return (
@@ -80,10 +45,9 @@ export default function Login() {
       <ContentWrapper>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+            Admin Login
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST">
             <div>
@@ -129,41 +93,13 @@ export default function Login() {
                 />
               </div>
             </div>
-
             <div className="flex flex-col">
               <button
-                onClick={voter_signin}
+                onClick={admin_signin}
                 type="button"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in as voter
-              </button>
-              <button
-                onClick={candidate_signin}
-                type="button"
-                className="mt-2 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in as candidate
-              </button>
-              <button
-                onClick={candidate_register}
-                type="button"
-                className="mt-2 flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Register as Candidate
-              </button>
-              <button
-                onClick={voter_register}
-                type="button"
-                className="mt-2 flex w-full justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Register as Voter
-              </button>
-              <button
-                onClick={admin_login}
-                className="mt-2 flex justify-center text-blue-600"
-              >
-                Are you an Admin?
+                Sign in
               </button>
             </div>
           </form>

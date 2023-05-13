@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { baseUrl } from "../config";
+import ContentWrapper from "./ContentWrapper";
 
 export default function VoterRegister() {
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ export default function VoterRegister() {
   };
 
   const handleRegisterVoter = async (e) => {
-    e.preventDefault();
     try {
       // create a new voter
       const res = await axios.post(`${baseUrl}/voters`, voter);
@@ -36,9 +36,9 @@ export default function VoterRegister() {
   };
 
   return (
-    <div className="space-y-10">
-      <div className="flex justify-center mt-5 px-4 sm:px-0">
-        <h2 className="text-2xl font-bold leading-7 text-gray-900">
+    <ContentWrapper>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Register as Voter
         </h2>
       </div>
@@ -138,7 +138,7 @@ export default function VoterRegister() {
                 Cancel
               </button>
               <button
-                type="submit"
+                type="button"
                 onClick={handleRegisterVoter}
                 className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
@@ -148,6 +148,6 @@ export default function VoterRegister() {
           </form>
         </div>
       </div>
-    </div>
+    </ContentWrapper>
   );
 }

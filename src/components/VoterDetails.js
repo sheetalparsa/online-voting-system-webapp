@@ -12,14 +12,21 @@ export default function VoterDetails() {
   const [candidates, setCandidates] = useState([]);
   const [voter, setVoter] = useState(null);
 
-  const handleVote = () => {
-    if (!selectedCandidate) {
-      alert("Please Select a candidate to vote");
-    } else if (voter.status !== true) {
-      navigate(`/thankyou`)
-      alert(selectedCandidate);
-    } else {
-      alert("The Voter has already voted!!");
+  const handleVote = async () => {
+    try {
+      if (!selectedCandidate) {
+        throw new Error("Please Select a candidate to vote");
+      } else if (voter.status !== true) {
+        await axios.post(`${baseUrl}/voters/vote`, {
+          v_id: voter._id,
+          c_id: selectedCandidate,
+        });
+        navigate(`/thankyou`);
+      } else {
+        throw new Error("The Voter has already voted!!");
+      }
+    } catch (err) {
+      alert(err);
     }
   };
 
@@ -69,7 +76,7 @@ export default function VoterDetails() {
           <br />
           <button
             onClick={handleVote}
-            type="submit"
+            type="button"
             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Vote

@@ -7,6 +7,8 @@ import VoterRegister from './components/VoterRegister';
 import VoterDetails from "./components/VoterDetails";
 import VoterVerify from './components/VoterVerify';
 import ThankYou from './components/ThankYou';
+import AdminLogin from './components/AdminLogin';
+import AdminDashboard from './components/AdminDashboard';
 
 
 function App() {
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<VoterVerify />} /> */}
         <Route path="/" element={<Login />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/candidate-register" element={<CandidateRegister />} />
         <Route path="/candidate/:candidateId" element={<CandidateDetails />} />
         <Route path="/voter-register" element={<VoterRegister />} />
