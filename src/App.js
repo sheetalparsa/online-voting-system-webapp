@@ -9,6 +9,7 @@ import VoterVerify from './components/VoterVerify';
 import ThankYou from './components/ThankYou';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
+import Votee from './components/Votee';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         <Route path="/voter/:voterId" element={<VoterDetails />} />
         <Route path="/voter/:voterId/verify_voter" element={<VoterVerify />} />
         <Route path="/thankyou" element={<ThankYou />} />
+        <Route path="/voter/:voterId/vote" element={<Votee />} />
+
       </Routes>
     </BrowserRouter>
   )

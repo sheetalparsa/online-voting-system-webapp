@@ -175,7 +175,7 @@ export default function CandidateRegister() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="text-sm font-semibold leading-6 text-gray-900 border px-3 py-2 rounded-md shadow-sm hover:bg-gray-100"
               >
                 Cancel
               </button>

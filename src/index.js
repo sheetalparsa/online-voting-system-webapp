@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import image from "./voting9.jpg";
 import './index.css';
+import './App.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <div className='background-image'>
+      <App />
+    </div>
   </React.StrictMode>
 );
 

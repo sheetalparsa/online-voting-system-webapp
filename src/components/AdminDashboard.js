@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import ContentWrapper from "./ContentWrapper";
 import axios from "axios";
 import { baseUrl } from "../config";
@@ -11,7 +12,9 @@ import {
   Legend,
   Bar,
 } from "recharts";
+
 export default function AdminDashboard() {
+  const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
 
   const fetchData = async () => {
@@ -26,9 +29,22 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleLogOut = () => {
+    navigate("/")
+  }
+
   return (
     <>
       <ContentWrapper>
+        <div className="flex flex-row-reverse items-center gap-x-4 sm:gap-x-6">
+          <button
+            onClick={handleLogOut}
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Logout
+          </button>
+        </div>
         {/** candidate votes per candidate and show winner */}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
