@@ -76,7 +76,7 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className="background-image">
       <ContentWrapper>
         <header>
           <h2 className="mt-10 font-serif text-center text-5xl font-bold leading-9 tracking-tight text-white">
@@ -174,6 +174,6 @@ export default function Login() {
           </form>
         </div>
       </ContentWrapper>
-    </>
+    </div>
   );
 }
